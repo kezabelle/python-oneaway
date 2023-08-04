@@ -282,7 +282,7 @@ if __name__ == "__main__":
             with open("/usr/share/dict/words", "r") as default_dictionary:
                 default_words = {line.strip().lower() for line in default_dictionary}
         except Exception:
-            sys.stderr.write(f"Failed to read file usr/share/dict/words{os.linesep}")
+            sys.stderr.write(f"Failed to read file /usr/share/dict/words{os.linesep}")
 
     sys.stdout.write(f"# Variants allowed: {os.linesep}")
     sys.stdout.write(f"  - missing letters{os.linesep}")
