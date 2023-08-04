@@ -288,6 +288,17 @@ if __name__ == "__main__":
         except Exception:
             sys.stderr.write(f"Failed to read file /usr/share/dict/words{os.linesep}")
 
+    # The resources in pyspellchecker seem to ultimately *include* typos intentionally
+    # so they aren't a good candidate for a separate dictionary 🤷
+    # try:
+    #     pyspellchecker_words = pkgutil.get_data("spellchecker", "resources/en.json.gz")
+    # except FileNotFoundError:
+    #     sys.stderr.write(f"Failed to find file pyspellchecker dictionary{os.linesep}")
+    # else:
+    #     if pyspellchecker_words is not None:
+    #         words_counts = json.loads(gzip.decompress(pyspellchecker_words).decode("utf-8"))
+    #         default_words.update({line.strip().lower() for line in words_counts.keys()})
+
     sys.stdout.write(f"# Variants allowed: {os.linesep}")
     sys.stdout.write(f"  - missing letters{os.linesep}")
     sys.stdout.write(f"  - swapped letters{os.linesep}")
