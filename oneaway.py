@@ -27,14 +27,18 @@ __all__ = [
 def dropped_letter(value: str, /) -> Iterator[str]:
     """Generates variations on `value` where one of the letters is missing"""
     seen: Set[str] = set()
-    for position, char in enumerate(value):
+    for position in range(len(value)):
+        char = value[position]
         if char.isspace():
             raise ValueError(
                 "Encountered whitespace in `value`",
                 "Split your sentence/fragment by whitespace and provide each word "
                 "as `value` individually",
             )
-        before, dropped, after = value.partition(char)
+        before, after = (
+            value[0:position],
+            value[position + 1 :],
+        )
         new_value = f"{before}{after}"
         if new_value not in seen:
             yield new_value
